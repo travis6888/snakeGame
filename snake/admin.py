@@ -4,3 +4,4 @@ from django.contrib import admin
 from snake.models import Score
 
 admin.site.register(Score)
+

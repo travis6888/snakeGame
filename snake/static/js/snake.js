@@ -222,6 +222,24 @@ $(document).ready(function () {
         clearInterval(gameLoopInterval);
         canvasContext.fillText('Game Over', 150, 200);
         $('#play').text("Play Again");
+        var gameInfo ={
+            'game' :"snake", 'score': score
+            };
+        gameInfo = JSON.stringify(gameInfo);
+        $.ajax({
+            url: '/new_score/',
+            type: 'POST',
+            data: gameInfo,
+            dataType: 'json',
+            success: function(response){
+                console.log(response);
+            },
+            error: function(error){
+                console.log(error);
+            }
+
+
+        })
 
 
 
