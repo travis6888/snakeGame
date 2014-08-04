@@ -1,0 +1,17 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <button id="play">Play</button>
+    <button id="fast">Fast</button>
+    <button id="medium">Medium</button>
+    <button id="slow">Slow</button>
+        <center>
+            <canvas id="canvas" width="400" height="400"></canvas>
+        </center>
+    <div class="score"></div>
+{% endblock %}
