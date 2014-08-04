@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^profile/$', 'snake.views.profile', name='profile'),
     url(r'^$', 'snake.views.home', name='home'),
     url(r'^new_score/$', 'snake.views.new_score', name='new_score'),
+    url(r'^get_score/$', 'snake.views.get_score', name='get_score'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

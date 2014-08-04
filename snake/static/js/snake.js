@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    $.ajax({
+            url: '/get_score/',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response){
+            $('.score').html("<h3>Recent high score: "+ response.highscore.score__max+"</h3>")
+            },
+            error: function(error){
+            }
+
+
+        });
     // Let's set up some variables to save the canvas elements and properties
     var canvas = $("#canvas")[0];
     var canvasContext = canvas.getContext("2d");

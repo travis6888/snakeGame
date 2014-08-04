@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Max
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
@@ -41,7 +42,13 @@ def register(request):
         'form': form,
     })
 
-
+@csrf_exempt
+def get_score(request):
+    if request.method == "GET":
+        score = Score.objects.filter(player=request.user)
+        highscore = score.aggregate(Max('score'))
+        data = {'highscore': highscore}
+        return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 @csrf_exempt
