@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.db.models import Max
+from django.db.models import Max, Avg
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
@@ -22,7 +22,11 @@ def snake(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    score = Score.objects.filter(player=request.user).order_by('-date')
+    average = Score.objects.filter(player=request.user).aggregate(Avg('score'))
+
+    data = {'scores':score, 'average': average}
+    return render(request, 'profile.html', data)
 
 
 def register(request):

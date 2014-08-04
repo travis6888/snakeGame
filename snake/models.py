@@ -14,3 +14,5 @@ class Score(models.Model):
 
     def __unicode__(self):
         return "{} {}".format(self.player, self.score)
+
+    # def get_high_score(self):
