@@ -4,7 +4,12 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function(response){
-            $('.score').html("<h3>Recent high score: "+ response.highscore.score__max+"</h3>")
+                if (response.highscore.score__max === null){
+                     $('.score').html("<h3>Recent high score: 0 </h3>")
+                }
+                else {
+                    $('.score').html("<h3>Recent high score: " + response.highscore.score__max + "</h3>")
+                }
             },
             error: function(error){
             }
